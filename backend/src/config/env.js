@@ -1,7 +1,8 @@
-const env = {
-    port : process.env.PORT,
-    mongoUri : process.env.MONGO_URI
+export const env = {
+    port: process.env.PORT,
+    mongoUri: process.env.MONGO_URI,
+    jwtSecret: process.env.JWT_SECRET,
+    node_env : process.env.NODE_ENV
 }
 
 
-export {env}
