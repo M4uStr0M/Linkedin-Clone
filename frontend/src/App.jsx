@@ -1,8 +1,13 @@
-import React from 'react'
+import RouterModel from './RouterModel'
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <RouterModel />
+      <ToastContainer position="top-right" autoClose={3000} />
+
+    </>
   )
 }
 

@@ -6,7 +6,7 @@ async function main() {
     const server = createServer(app)
     const port = env.port || 3100 
     server.listen(port, () => {
-        console.log(`server is runnning on port ${port}`)
+        console.log(`server is runnning on url : http://localhost:${port}`)
     })
 }
 

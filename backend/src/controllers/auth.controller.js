@@ -13,11 +13,11 @@ const registerUser = asyncHandler(async (req, res) => {
     const { firstName, lastName, userName, email, password } = req.body
     const userNameExist = await User.findOne({ userName })
     if (userNameExist) {
-        throw ApiError.conflict("Username already exists , Please enter diffrent username")
+        throw ApiError.conflict("Username already exists")
     }
     const userEmailExist = await User.findOne({ email })
     if (userEmailExist) {
-        throw ApiError.conflict("Username already exists , Please enter diffrent email")
+        throw ApiError.conflict("Email already exists")
     }
 
 

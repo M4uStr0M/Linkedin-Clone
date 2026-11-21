@@ -10,8 +10,8 @@ import { AuthMiddleware } from '../middlewares/auth.middleware.js';
 const authRouter = express.Router()
 
 authRouter.post("/register", validate(registerSchema), registerUser)
-authRouter.post("/login", validate(loginSchema),loginUser)
-authRouter.get("/get-me", AuthMiddleware, getUser )
+authRouter.post("/login", validate(loginSchema), loginUser)
+authRouter.get("/get-me", AuthMiddleware, getUser)
 
 
 
