@@ -101,6 +101,12 @@ const getUser = asyncHandler(async (req, res) => {
 })
 
 
+const logoutUser = asyncHandler(async (req, res) => {
+    res.clearCookie('token')
+    ApiResponse.ok(res, "Logout successfully")
+})
+
+
 
 
 
@@ -109,5 +115,6 @@ const getUser = asyncHandler(async (req, res) => {
 export {
     registerUser,
     loginUser,
-    getUser
+    getUser,
+    logoutUser
 }

@@ -1,23 +1,28 @@
 import { useState } from 'react'
 import logo from '../../assets/Logo.svg'
 import { signUp } from '../../api/userService.js'
-import { Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const SignUp = () => {
-
+    const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const navigate = useNavigate()
     async function signUpHandler(e) {
         e.preventDefault()
-        console.log(firstName, lastName, email, userName, password)
+        setLoading(true)
 
-        const res = await signUp(firstName, lastName, email, userName, password)
-        console.log(res)
-
+        try {
+            const res = await signUp(firstName, lastName, email, userName, password)
+            if(res.success){
+                navigate("/sign-in")
+            }
+        } finally {
+            setLoading(false)
+        }
 
 
 
@@ -58,7 +63,7 @@ const SignUp = () => {
                             </label>
                         </div>
 
-                        <button className='h-14 bg-blue-700 rounded-full text-white font-semibold hover:opacity-90 cursor-pointer transition-all '>Sign Up</button>
+                        <button disabled={loading} className='h-14 bg-blue-700 rounded-full text-white font-semibold hover:opacity-90 cursor-pointer transition-all '>{loading ? "Signing ..." : "Sign Up"}</button>
                     </form>
 
                     <div className='mt-2 flex justify-center items-center gap-3 '>

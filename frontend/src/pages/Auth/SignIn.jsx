@@ -1,22 +1,32 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../assets/Logo.svg'
 import { signIn } from '../../api/userService'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthDataContext } from '../../context/AuthContext'
 
 const SignIn = () => {
-
-
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
-
+  const { user, setUser, setIsLogged } = useContext(AuthDataContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const [loading, setLoading] = useState(false)
   async function signInHandler(e) {
     e.preventDefault()
-    console.log(email, password)
+    setLoading(true)
 
-    const res = await signIn(email, password)
-    console.log(res)
+    try {
+      const res = await signIn(email, password)
+      setUser(res?.data)
+      setIsLogged(res?.data?._id)
+      if (res?.success) {
+        navigate("/")
+      }
+
+    } finally {
+      setLoading(false)
+    }
+
   }
 
   return (
@@ -48,7 +58,7 @@ const SignIn = () => {
               </label>
             </div>
 
-            <button className='h-14 bg-blue-700 rounded-full text-white font-semibold hover:opacity-90 cursor-pointer transition-all'>Sign In</button>
+            <button disabled={loading} className='h-14 bg-blue-700 rounded-full text-white font-semibold hover:opacity-90 cursor-pointer transition-all'>{loading ? "Signinng ..." : "Sign In"}</button>
           </form>
 
           <div className='mt-2 flex justify-center items-center gap-3 '>
