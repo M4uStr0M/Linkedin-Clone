@@ -3,6 +3,7 @@ import AuthContext, { AuthDataContext } from './context/AuthContext';
 import RouterModel from './RouterModel'
 import { ToastContainer } from "react-toastify";
 import { getMe } from './api/userService';
+import { Home } from './pages/Home';
 
 const App = () => {
   const [loading, setLoading] = useState(true)
@@ -28,9 +29,10 @@ const App = () => {
   return (
     <>
 
+      <RouterModel />
 
       <ToastContainer position="top-right" autoClose={3000} />
-      <RouterModel />
+
 
 
 

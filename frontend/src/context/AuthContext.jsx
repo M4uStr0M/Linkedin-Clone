@@ -4,12 +4,12 @@ export const AuthDataContext = createContext(null)
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState([])
     const [isLogged, setIsLogged] = useState('')
-    console.log(user)
-    console.log("sss")
-    console.log(isLogged)
+    const [isActiveEditProfile, setIsActiveEditProfile] = useState(true)
+
+
     return (
         <>
-            <AuthDataContext.Provider value={{ user, setUser, isLogged, setIsLogged }} >
+            <AuthDataContext.Provider value={{ user, setUser, isLogged, setIsLogged, isActiveEditProfile, setIsActiveEditProfile }} >
 
                 {children}
 

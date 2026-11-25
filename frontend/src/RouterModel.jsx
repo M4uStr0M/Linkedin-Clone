@@ -16,8 +16,8 @@ const RouterModel = () => {
         <Route path='/sign-up' element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
 
-        <Route element={<ProtectedRoutes />} >
           <Route path='/' element={<Home />} />
+        <Route element={<ProtectedRoutes />} >
 
         </Route>
 
